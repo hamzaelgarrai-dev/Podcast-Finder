@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('podcasts', function (Blueprint $table) {
+        Schema::create('episodes', function (Blueprint $table) {
             $table->id();
+             $table->string('titre');
+            $table->string('description');
+            $table->string('fichier_audio');
+            $table->foreignId('podcast_id')->constrained('podcasts')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('podcasts');
+        Schema::dropIfExists('episodes');
     }
 };

@@ -13,7 +13,12 @@ class PodcastController extends Controller
      */
     public function index()
     {
-        //
+        $podcast = Podcast::all();
+        return response()->json([
+        'success' => true,
+        'message' => 'podcasts liste',
+        'data' => $podcast
+    ]);
     }
 
     /**
@@ -27,9 +32,15 @@ class PodcastController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Podcast $podcast)
+    public function show($id)
     {
-        //
+        $podcast = Podcast::find($id);
+        return response()->json([
+        'success' => true,
+        'message' => 'podcast',
+        'data' => $podcast
+    ]);
+
     }
 
     /**

@@ -13,10 +13,46 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Notifications\PasswordResetNotification;
 
+/**
+ * @OA\Info(
+ *     title="Auth Api documentation",
+ *     version="1.0",
+ *     description="Documentation avec Swagger"
+ * )
+ *
+ * @OA\Tag(
+ *     name="Authentification",
+ *     description=" documentation of the Auth method with the reset password"
+ * )
+ */
+
 
 
 class AuthController extends Controller
 {
+
+    /**
+ * @OA\Post(
+ *     path="/api/register",
+ *     tags={"Register"},
+ *     summary="Register EndPoint",
+ *     
+ *        
+ *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"nom","prenom","email","password"},
+     *             @OA\Property(property="nom", type="string", example="elgarrai"),
+     *             @OA\Property(property="prenom", type="string", example="Hamza"),
+     *             @OA\Property(property="email", type="string", example="Hamza@gmail.com"),
+     *             @OA\Property(property="pasword", type="string", example="12345678"),
+     *             
+     *         )
+     *     ),
+     *     @OA\Response(response=201, description="user registred")
+     * 
+ * )
+ */
     public function register(RegisterRequest $request){
 
         $user = User::create([
@@ -37,6 +73,27 @@ class AuthController extends Controller
         ];
 
     }
+     /**
+ * @OA\Post(
+ *     path="/api/login",
+ *     tags={"Login"},
+ *     summary="Login EndPoint",
+ *     
+ *        
+ *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"email","token"},
+     *             @OA\Property(property="email", type="string", example="hamza@emple.com"),
+     *             @OA\Property(property="password", type="int", example="12345678"),
+     *           
+     *             
+     *         )
+     *     ),
+     *     @OA\Response(response=201, description="user registred")
+     * 
+ * )
+ */
 
     public function login(loginRequest $request){
 
@@ -68,6 +125,27 @@ class AuthController extends Controller
 
     }
 
+     /**
+ * @OA\Post(
+ *     path="/api/password/forget",
+ *     tags={"Forget"},
+ *     summary="Forget EndPoint",
+ *     
+ *        
+ *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"email",},
+     *             @OA\Property(property="email", type="string", example="hamza@emple.com"),
+     *             
+     *           
+     *             
+     *         )
+     *     ),
+     *     @OA\Response(response=201, description="a confirmation code is sent to user")
+     * 
+ * )
+ */
     public function forgetPassword(ForgetPasswordRequest $request){
 
         $user = User::where('email', $request->email)->first();
@@ -103,6 +181,28 @@ class AuthController extends Controller
 
     }
 
+    /**
+ * @OA\Post(
+ *     path="/api/password/reset",
+ *     tags={"Reset"},
+ *     summary="Reset EndPoint",
+ *     
+ *        
+ *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"email","token","password"},
+     *             @OA\Property(property="email", type="string", example="hamza@emple.com"),
+     *             @OA\Property(property="token", type="string", example="hamza@emple.com"),
+     *             @OA\Property(property="password", type="int", example="12345678"),
+     *           
+     *             
+     *         )
+     *     ),
+     *     @OA\Response(response=201, description="password reset succesfuly")
+     * 
+ * )
+ */
     public function resetPassword(ResetPasswordRequest $request){
 
         $user = User::where('email', $request->email)->first();

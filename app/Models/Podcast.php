@@ -9,6 +9,8 @@ class Podcast extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['titre','description','category','image_url'];
+
     public function episodes(){
         return $this->hasMany(Episode::class);
     }

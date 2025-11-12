@@ -35,7 +35,7 @@ class PasswordResetNotification extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->subject('Réinitialisation de votre mot de passe')
-            ->greeting('Bonjour ' . $this->user->name )
+            ->greeting('Bonjour ' . $this->user->nom )
             ->line('Voici votre code de réinitialisation :')
             ->line('**' . $this->token . '**')
             ->line('Ce code est valable pour une durée limitée.')

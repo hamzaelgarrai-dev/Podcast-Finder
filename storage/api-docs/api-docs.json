@@ -1,0 +1,434 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Auth Api documentation",
+        "description": "Documentation avec Swagger",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Register"
+                ],
+                "summary": "Register EndPoint",
+                "operationId": "8a56853624e025573120a09a4c75d468",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nom",
+                                    "prenom",
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "nom": {
+                                        "type": "string",
+                                        "example": "elgarrai"
+                                    },
+                                    "prenom": {
+                                        "type": "string",
+                                        "example": "Hamza"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "Hamza@gmail.com"
+                                    },
+                                    "pasword": {
+                                        "type": "string",
+                                        "example": "12345678"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "user registred"
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Login"
+                ],
+                "summary": "Login EndPoint",
+                "operationId": "a3b306d14572d1f4bd6c064b3233e7b8",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "token"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "hamza@emple.com"
+                                    },
+                                    "password": {
+                                        "type": "integer",
+                                        "example": "12345678"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "user registred"
+                    }
+                }
+            }
+        },
+        "/api/password/forget": {
+            "post": {
+                "tags": [
+                    "Forget"
+                ],
+                "summary": "Forget EndPoint",
+                "operationId": "686e313af2e7a9413c06bf0adfa44b6a",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "hamza@emple.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "a confirmation code is sent to user"
+                    }
+                }
+            }
+        },
+        "/api/password/reset": {
+            "post": {
+                "tags": [
+                    "Reset"
+                ],
+                "summary": "Reset EndPoint",
+                "operationId": "5f9daa4e2d9a09acda465d6b8455a1cd",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "token",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "hamza@emple.com"
+                                    },
+                                    "token": {
+                                        "type": "string",
+                                        "example": "hamza@emple.com"
+                                    },
+                                    "password": {
+                                        "type": "integer",
+                                        "example": "12345678"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "password reset succesfuly"
+                    }
+                }
+            }
+        },
+        "/api/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Liste des users",
+                "description": "Retrieve a list of all users available in the system.",
+                "operationId": "c457726701591d1183b53aa71fc13441",
+                "responses": {
+                    "200": {
+                        "description": "Succès",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "timestamp": {
+                                            "type": "string",
+                                            "example": "2025-10-13 11:45:00"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "user deleted successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Add User EndPoint",
+                "operationId": "592819a0265360b2014512d6dbfaf0e7",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nom",
+                                    "prenom",
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "nom": {
+                                        "type": "string",
+                                        "example": "elgarrai"
+                                    },
+                                    "prenom": {
+                                        "type": "string",
+                                        "example": "Hamza"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "Hamza@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "12345678"
+                                    },
+                                    "role": {
+                                        "type": "string",
+                                        "example": "animateur"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Succès",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "timestamp": {
+                                            "type": "string",
+                                            "example": "2025-10-13 11:45:00"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "user created successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/{id}": {
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update an existing user",
+                "description": "Update a user by ID.",
+                "operationId": "b9091397c8b25f12c6adb74be6ce3a5a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the user to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 101
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "user update payload",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nom",
+                                    "prenom",
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "nom": {
+                                        "type": "string",
+                                        "example": "elgarrai"
+                                    },
+                                    "prenom": {
+                                        "type": "string",
+                                        "example": "Hamza"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "Hamza@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "12345678"
+                                    },
+                                    "role": {
+                                        "type": "string",
+                                        "example": "animateur"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "user updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "timestamp": {
+                                            "type": "string",
+                                            "example": "2025-10-13 11:45:00"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "user updated successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Delete a user",
+                "description": "Delete an existing user by its ID.",
+                "operationId": "fa56cffde745d3f152f95cbacd936c0b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the user to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 101
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "user updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "timestamp": {
+                                            "type": "string",
+                                            "example": "2025-10-13 11:45:00"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "user deleted successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Register",
+            "description": "Register"
+        },
+        {
+            "name": "Login",
+            "description": "Login"
+        },
+        {
+            "name": "Forget",
+            "description": "Forget"
+        },
+        {
+            "name": "Reset",
+            "description": "Reset"
+        },
+        {
+            "name": "Users",
+            "description": "Users"
+        }
+    ]
+}

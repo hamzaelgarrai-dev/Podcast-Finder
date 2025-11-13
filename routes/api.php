@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EpisodeController;
+use App\Http\Controllers\PodcastController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,7 +30,34 @@ Route::post('password/reset',[AuthController::class, 'resetPassword']);
 
 //users Routes
 
-Route::get('users', [UserController::class, 'index']);
-Route::post('users', [UserController::class, 'store']);
-Route::put('users/{id}', [UserController::class, 'update']);
-Route::delete('users/{id}', [UserController::class, 'destroy']);
+Route::middleware('auth:sanctum')->group(function () {
+
+    Route::get('users', [UserController::class, 'index']);
+    Route::post('users', [UserController::class, 'store']);
+    Route::put('users/{id}', [UserController::class, 'update']);
+    Route::delete('users/{id}', [UserController::class, 'destroy']);
+});
+
+
+
+
+//podcasts Routes
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('podcasts', [PodcastController::class , 'store']);
+    Route::put('podcasts/{id}', [PodcastController::class , 'update']);
+    Route::delete('podcasts/{id}', [PodcastController::class , 'destroy']);
+});
+Route::get('podcasts', [PodcastController::class , 'index']);
+Route::get('podcasts/{id}', [PodcastController::class , 'show']);
+
+
+//episodes Routes
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('podcasts/{id}/episodes', [EpisodeController::class, 'store']);
+    Route::put('episodes/{id}', [EpisodeController::class, 'update']);
+    Route::delete('episodes/{id}', [EpisodeController::class, 'destroy']);
+});
+
+Route::get('podcasts/{id}/episodes', [EpisodeController::class, 'index']);
+Route::get('episodes/{id}', [EpisodeController::class, 'show']);

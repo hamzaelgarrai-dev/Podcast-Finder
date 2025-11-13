@@ -11,7 +11,7 @@ class StoreEpisodeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,6 +22,10 @@ class StoreEpisodeRequest extends FormRequest
     public function rules(): array
     {
         return [
+
+            "titre"=>"required|string|max:255",
+            "description"=>"required|string|max:255",
+            "fichier_url"=>"required|string|max:255"
            
         ];
     }

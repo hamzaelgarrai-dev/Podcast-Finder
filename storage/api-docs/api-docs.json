@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Auth Api documentation",
+        "title": " Api documentation",
         "description": "Documentation avec Swagger",
         "version": "1.0"
     },
@@ -168,6 +168,340 @@
                 }
             }
         },
+        "/api/podcasts": {
+            "get": {
+                "tags": [
+                    "Podcasts"
+                ],
+                "summary": "Liste des podcasts",
+                "description": "Retrieve a list of all podcasts available in the system.",
+                "operationId": "28abe6e0a78fe6785659a51dde99679e",
+                "responses": {
+                    "200": {
+                        "description": "Succès",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "timestamp": {
+                                            "type": "string",
+                                            "example": "2025-10-13 11:45:00"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "podcasts retrieved successfully"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": "1"
+                                                    },
+                                                    "titre": {
+                                                        "type": "string",
+                                                        "example": "test"
+                                                    },
+                                                    "description": {
+                                                        "type": "string",
+                                                        "example": "description test"
+                                                    },
+                                                    "category": {
+                                                        "type": "string",
+                                                        "example": "sport"
+                                                    },
+                                                    "image_url": {
+                                                        "type": "string",
+                                                        "example": "url//test"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Podcasts"
+                ],
+                "summary": "Add Podcast EndPoint",
+                "operationId": "e8917ecbdaa178c760e0992b16b91fb1",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "titre",
+                                    "description",
+                                    "category",
+                                    "image_url"
+                                ],
+                                "properties": {
+                                    "titre": {
+                                        "type": "string",
+                                        "example": "test"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "description test"
+                                    },
+                                    "category": {
+                                        "type": "string",
+                                        "example": "sport"
+                                    },
+                                    "image_url": {
+                                        "type": "string",
+                                        "example": "url//test"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Succès",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "timestamp": {
+                                            "type": "string",
+                                            "example": "2025-10-13 11:45:00"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "podcast created successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/podcasts/{id}": {
+            "get": {
+                "tags": [
+                    "Podcasts"
+                ],
+                "summary": "one podcasts details",
+                "description": "Retrieve a podcast.",
+                "operationId": "9009d1f97f328b3e48f85075f935aa0f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the podcast to retriev",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 101
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Succès",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "timestamp": {
+                                            "type": "string",
+                                            "example": "2025-10-13 11:45:00"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "podcast retrieved successfully"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": "1"
+                                                    },
+                                                    "titre": {
+                                                        "type": "string",
+                                                        "example": "test"
+                                                    },
+                                                    "description": {
+                                                        "type": "string",
+                                                        "example": "description test"
+                                                    },
+                                                    "category": {
+                                                        "type": "string",
+                                                        "example": "sport"
+                                                    },
+                                                    "image_url": {
+                                                        "type": "string",
+                                                        "example": "url//test"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Podcasts"
+                ],
+                "summary": "Update an existing podcast",
+                "description": "Update a podcast by ID.",
+                "operationId": "e72afa88b52a2b4864a2e29cca8cdabc",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the podcast to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 101
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "podcast update payload",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "titre",
+                                    "description",
+                                    "category",
+                                    "image_url"
+                                ],
+                                "properties": {
+                                    "titre": {
+                                        "type": "string",
+                                        "example": "test"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "description test"
+                                    },
+                                    "category": {
+                                        "type": "string",
+                                        "example": "sport"
+                                    },
+                                    "image_url": {
+                                        "type": "string",
+                                        "example": "url//test"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "user updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "timestamp": {
+                                            "type": "string",
+                                            "example": "2025-10-13 11:45:00"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "podcast updated successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Podcasts"
+                ],
+                "summary": "Delete a podcast",
+                "description": "Delete an existing podcast by its ID.",
+                "operationId": "378754b8c72fa0738edc3691e12cfb13",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the podcast to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 101
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "podcast updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "timestamp": {
+                                            "type": "string",
+                                            "example": "2025-10-13 11:45:00"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "podcast deleted successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/users": {
             "get": {
                 "tags": [
@@ -193,7 +527,7 @@
                                         },
                                         "message": {
                                             "type": "string",
-                                            "example": "user deleted successfully"
+                                            "example": "users retrieved successfully"
                                         }
                                     },
                                     "type": "object"
@@ -425,6 +759,10 @@
         {
             "name": "Reset",
             "description": "Reset"
+        },
+        {
+            "name": "Podcasts",
+            "description": "Podcasts"
         },
         {
             "name": "Users",

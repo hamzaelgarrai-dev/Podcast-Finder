@@ -15,14 +15,14 @@ use App\Notifications\PasswordResetNotification;
 
 /**
  * @OA\Info(
- *     title="Auth Api documentation",
+ *     title=" Api documentation",
  *     version="1.0",
  *     description="Documentation avec Swagger"
  * )
  *
  * @OA\Tag(
  *     name="Authentification",
- *     description=" documentation of the Auth method with the reset password"
+ *     description=" documentation"
  * )
  */
 

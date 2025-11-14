@@ -26,7 +26,7 @@ class StorePodcastRequest extends FormRequest
             "titre"=>"required|string|max:255",
             "description"=>"required|string|max:255",
             "category"=>"required|string|max:255",
-            "image_url"=> "required|string|max:255"
+            "image"=> "required|image|max:4048"
             
         ];
     }

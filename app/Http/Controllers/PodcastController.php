@@ -6,6 +6,7 @@ use App\Models\Podcast;
 use App\Http\Requests\StorePodcastRequest;
 use App\Http\Requests\UpdatePodcastRequest;
 use App\Models\User;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Support\Facades\Auth;
 
 class PodcastController extends Controller
@@ -94,12 +95,16 @@ class PodcastController extends Controller
     {
         $user = Auth::user();
 
+        
+
+        $uploadedFileUrl = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+
         $podcast = $user->podcasts()->create([
 
             "titre"=> $request->titre,
             "description"=> $request->description,
             "category"=> $request->category,
-            "image_url"=> $request->image_url
+            "image_url"=> $uploadedFileUrl
         ]);
         return response()->json([
         'success' => true,
@@ -210,10 +215,16 @@ class PodcastController extends Controller
     {
        
         $podcast = Podcast::findOrFail($id);
+        
         $podcast->titre = $request->titre;
         $podcast->description = $request->description;
         $podcast->category = $request->category;
-        $podcast->image_url = $request->image_url;
+        
+        if ($request->hasFile('image')) {
+        $uploadedFileUrl = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+        $podcast->image_url = $uploadedFileUrl;
+    }
+
         $podcast->update();
 
         return response()->json([
@@ -243,7 +254,7 @@ class PodcastController extends Controller
  *
  *     @OA\Response(
  *         response=200,
- *         description="podcast updated successfully",
+ *         description="podcast deleted successfully",
  *         @OA\JsonContent(
  *             type="object",
  *             @OA\Property(property="status", type="string", example="Success"),

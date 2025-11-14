@@ -28,7 +28,21 @@ class UserController extends Controller
  *             type="object",
  *             @OA\Property(property="status", type="string", example="Success"),
  *             @OA\Property(property="timestamp", type="string", example="2025-10-13 11:45:00"),
- *             @OA\Property(property="message", type="string", example="users retrieved successfully")
+ *             @OA\Property(property="message", type="string", example="users retrieved successfully"),
+ *              @OA\Property(
+ *                 property="data",
+ *                 type="array",
+ *                 @OA\Items(
+ *                     type="object",
+ *                      @OA\Property(property="id", type="integer", example="1"),
+ *                      @OA\Property(property="nom", type="string", example="elgarrai"),
+ *                      @OA\Property(property="prenom", type="string", example="hamza"),
+ *                      @OA\Property(property="email", type="string", example="hamza@exemple.com"),
+ *                      @OA\Property(property="password", type="string", example="12345678"),
+ *                      @OA\Property(property="role", type="string", example="visitor"),
+
+ *                 )
+ *             )
  *         )
  *     )
  * )
@@ -84,7 +98,7 @@ class UserController extends Controller
             "prenom"=>$request->prenom,
             "email"=>$request->email,
             "password"=>$request->password,
-            "role"=>$request->role,
+            
         
         ]);
 
@@ -193,7 +207,7 @@ class UserController extends Controller
  *
  *     @OA\Response(
  *         response=200,
- *         description="user updated successfully",
+ *         description="user deleted successfully",
  *         @OA\JsonContent(
  *             type="object",
  *             @OA\Property(property="status", type="string", example="Success"),

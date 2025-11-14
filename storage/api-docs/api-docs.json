@@ -168,6 +168,334 @@
                 }
             }
         },
+        "/api/podcasts/{id}/episodes": {
+            "get": {
+                "tags": [
+                    "Episode"
+                ],
+                "summary": "Liste des episode pour a specific podcast",
+                "description": "Retrieve a list of all episode for a specific podcast.",
+                "operationId": "20ff7e6c0dffbfca18affcb888e48502",
+                "responses": {
+                    "200": {
+                        "description": "Succès",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "timestamp": {
+                                            "type": "string",
+                                            "example": "2025-10-13 11:45:00"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "episodes retrieved successfully"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": "1"
+                                                    },
+                                                    "titre": {
+                                                        "type": "string",
+                                                        "example": "test"
+                                                    },
+                                                    "description": {
+                                                        "type": "string",
+                                                        "example": "description test"
+                                                    },
+                                                    "fichier_audio": {
+                                                        "type": "string",
+                                                        "example": "url//test"
+                                                    },
+                                                    "podcast_id": {
+                                                        "type": "integer",
+                                                        "example": "1"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Episode"
+                ],
+                "summary": "Add Episode to a podcast EndPoint",
+                "operationId": "e7630c473711d27d493c60a8768c8434",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "titre",
+                                    "description",
+                                    "fichier_audio"
+                                ],
+                                "properties": {
+                                    "titre": {
+                                        "type": "string",
+                                        "example": "test"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "description test"
+                                    },
+                                    "fichier_audio": {
+                                        "type": "string",
+                                        "example": "url//test"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Succès",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "timestamp": {
+                                            "type": "string",
+                                            "example": "2025-10-13 11:45:00"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "episode created successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/episodes/{id}": {
+            "get": {
+                "tags": [
+                    "Episode"
+                ],
+                "summary": "one episode details",
+                "description": "Retrieve a episode.",
+                "operationId": "682c9f0b582614c5d25814ad0a6659c0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the episode to retriev",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 101
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Succès",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "timestamp": {
+                                            "type": "string",
+                                            "example": "2025-10-13 11:45:00"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "episode retrieved successfully"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": "1"
+                                                    },
+                                                    "titre": {
+                                                        "type": "string",
+                                                        "example": "test"
+                                                    },
+                                                    "description": {
+                                                        "type": "string",
+                                                        "example": "description test"
+                                                    },
+                                                    "fichier_audio": {
+                                                        "type": "string",
+                                                        "example": "url//test"
+                                                    },
+                                                    "image_url": {
+                                                        "type": "string",
+                                                        "example": "url//test"
+                                                    },
+                                                    "podcast_id": {
+                                                        "type": "integer",
+                                                        "example": "1"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Episode"
+                ],
+                "summary": "Update an existing episode",
+                "description": "Update an episode by ID.",
+                "operationId": "7c242aee03c0c562d61e184cc40ffbcf",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the episode to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 101
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "podcast update payload",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "titre",
+                                    "description",
+                                    "fichier_audio"
+                                ],
+                                "properties": {
+                                    "titre": {
+                                        "type": "string",
+                                        "example": "test"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "description test"
+                                    },
+                                    "fichier_audio": {
+                                        "type": "string",
+                                        "example": "url//test"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "episode updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "timestamp": {
+                                            "type": "string",
+                                            "example": "2025-10-13 11:45:00"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "episode updated successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Episode"
+                ],
+                "summary": "Delete an episode",
+                "description": "Delete an existing episode by its ID.",
+                "operationId": "2b31a0a0e3d3c3f435a21fe63779b608",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the episode to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 101
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "episode deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "timestamp": {
+                                            "type": "string",
+                                            "example": "2025-10-13 11:45:00"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "episode deleted successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/podcasts": {
             "get": {
                 "tags": [
@@ -476,7 +804,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "podcast updated successfully",
+                        "description": "podcast deleted successfully",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -759,6 +1087,10 @@
         {
             "name": "Reset",
             "description": "Reset"
+        },
+        {
+            "name": "Episode",
+            "description": "Episode"
         },
         {
             "name": "Podcasts",

@@ -2,47 +2,53 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Episode;
+use App\Models\Podcast;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
+   
+    public function SearchPodcasts(Request $request){
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+      $query = $request->query('query'); // GET /api/search?query=...
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+    $podcasts = Podcast::query()
+        ->where('titre', 'LIKE', "%{$query}%")
+        ->orWhere('category', 'LIKE', "%{$query}%")
+        ->orWhereHas('user', function ($q) use ($query) {
+            $q->where('nom', 'LIKE', "%{$query}%");
+        })->get();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+        if ($podcasts->isEmpty()) {
+        
+            return [
+                "message" => "no podcast found"
+            ];
+       }
+        return response()->json($podcasts);
+    
+}
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+public function SearchEpisodes(Request $request){
+
+    $query = $request->query('query');
+
+    $episode = Episode::query()
+    ->where('titre', 'LIKE', "%{$query}%")
+    ->orWhere('created_at' , 'LIKE', "%{$query}%")
+    ->orWhereHas('podcast' , function ($q) use ($query){
+        $q->where('titre', 'LIKE', "%{$query}%");
+    } )->get();
+
+    if ($episode->isEmpty()) {
+        
+            return [
+                "message" => "no episode found"
+            ];
+       }
+        return response()->json($episode);
+
+}
+
 }

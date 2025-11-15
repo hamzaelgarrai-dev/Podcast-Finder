@@ -24,7 +24,7 @@ class UpdateEpisodeRequest extends FormRequest
         return [
             "titre"=>"required|string|max:255",
             "description"=>"required|string|max:255",
-            "fichier_url"=>"required|string|max:255"
+            "audio"=>"sometimes|mimes:mp3,wav,ogg"
         ];
     }
 }

@@ -25,7 +25,7 @@ class StoreEpisodeRequest extends FormRequest
 
             "titre"=>"required|string|max:255",
             "description"=>"required|string|max:255",
-            "fichier_url"=>"required|string|max:255"
+            "audio"=>"required|mimes:mp3,wav,ogg"
            
         ];
     }

@@ -6,6 +6,8 @@ use App\Models\Episode;
 use App\Http\Requests\StoreEpisodeRequest;
 use App\Http\Requests\UpdateEpisodeRequest;
 use App\Models\Podcast;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use Illuminate\Support\Facades\Gate;
 
 class EpisodeController extends Controller
 {
@@ -102,7 +104,7 @@ class EpisodeController extends Controller
  * 
  * )
  */
-    public function store(StoreEpisodeRequest $request , $id)
+    public function store(StoreEpisodeRequest $request , $id , Episode $episode)
     {
         $podcast= Podcast::find($id);
         if (!$podcast) {
@@ -111,6 +113,10 @@ class EpisodeController extends Controller
                 'message' => 'Podcast not found.'
             ]);
         }
+
+        Gate::authorize('create' , $episode);
+
+        $uploadAudio= Cloudinary::upload($request->file('audio')->getRealPath(),['resource_type' => 'video'])->getSecurePath();
 
         $episode = $podcast->episodes()->create([
         'title' => $request->title,
@@ -244,9 +250,13 @@ class EpisodeController extends Controller
             ],);
         }
 
+        $uploadAudio= Cloudinary::upload($request->file('audio')->getRealPath(),['resource_type' => 'video'])->getSecurePath();
+
+        Gate::authorize('update' , $episode);
+
         $episode->titre = $request->titre;
         $episode->description = $request->description;
-        $episode->fichier_audio = $request->fichier_audio;
+        $episode->fichier_audio = $uploadAudio;
         $episode->update();
         return response()->json([
             'success' => true,

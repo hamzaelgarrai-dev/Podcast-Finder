@@ -106,7 +106,7 @@ class UserController extends Controller
         'success' => true,
         'message' => 'user created.',
         'data' => $user
-    ]);
+    ],201);
     }
 
     /**

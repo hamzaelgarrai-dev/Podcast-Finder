@@ -55,7 +55,7 @@ class EpisodeController extends Controller
  */
     public function index($id)
     {
-        $podcast = Podcast::with('episodes')->find('$id');
+        $podcast = Podcast::with('episodes')->find($id);
         if (!$podcast) {
             return response()->json([
                 'success' => false,
@@ -241,7 +241,7 @@ class EpisodeController extends Controller
  */
     public function update(UpdateEpisodeRequest $request, $id)
     {
-        $episode= Episode::findOrFail($id);
+        $episode= Episode::find($id);
 
         if (!$episode) {
             return response()->json([
@@ -250,13 +250,18 @@ class EpisodeController extends Controller
             ],);
         }
 
-        $uploadAudio= Cloudinary::upload($request->file('audio')->getRealPath(),['resource_type' => 'video'])->getSecurePath();
+       
 
         Gate::authorize('update' , $episode);
 
-        $episode->titre = $request->titre;
-        $episode->description = $request->description;
-        $episode->fichier_audio = $uploadAudio;
+        $episode->titre = $request->titre ?? $request->titre;
+        $episode->description = $request->description ?? $request->description;
+        
+        if($request->hasFile('audio')){
+             $uploadAudio= Cloudinary::upload($request->file('audio')->getRealPath(),['resource_type' => 'video'])->getSecurePath();
+             $episode->fichier_audio = $uploadAudio;
+        }
+
         $episode->update();
         return response()->json([
             'success' => true,
@@ -299,7 +304,7 @@ class EpisodeController extends Controller
 */
     public function destroy($id)
     {
-        $episode= Episode::findOrFail($id);
+        $episode= Episode::find($id);
         if (!$episode) {
             return response()->json([
                 'success' => false,

@@ -216,9 +216,9 @@ class PodcastController extends Controller
        
         $podcast = Podcast::findOrFail($id);
         
-        $podcast->titre = $request->titre;
-        $podcast->description = $request->description;
-        $podcast->category = $request->category;
+        $podcast->titre = $request->titre ?? $request->titre;
+        $podcast->description = $request->description ?? $request->description;
+        $podcast->category = $request->category ?? $request->category;
         
         if ($request->hasFile('image')) {
         $uploadedFileUrl = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();

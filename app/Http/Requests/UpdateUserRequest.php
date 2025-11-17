@@ -22,10 +22,10 @@ class UpdateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "nom" =>"required|string|max:255",
-            "prenom" =>"required|string|max:255",
-            "email" => "required|email|unique:users",
-            "password"=>"required|string|min:8" ,
+            "nom" =>"sometimes|string|max:255",
+            "prenom" =>"sometimes|string|max:255",
+            "email" => "sometimes|email",
+            "password"=>"sometimes|string|min:8" ,
         ];
     }
     public function messages(){

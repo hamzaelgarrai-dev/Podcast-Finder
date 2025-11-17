@@ -227,10 +227,10 @@ class AnimateurController extends Controller
     {
         $host = User::where('id', $id)->where('role', 'animateur')->first();
 
-        $host->nom = $request->nom;
-        $host->prenom = $request->prenom;
-        $host->email = $request->email;
-        $host->password = $request->password;
+        $host->nom = $request->nom ?? $request->nom;
+        $host->prenom = $request->prenom ?? $request->prenom;
+        $host->email = $request->email ?? $request->email;
+        $host->password = $request->password ?? $request->password;
 
         $host->update();
 

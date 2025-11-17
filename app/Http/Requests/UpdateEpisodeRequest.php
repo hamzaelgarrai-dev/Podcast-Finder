@@ -22,8 +22,8 @@ class UpdateEpisodeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "titre"=>"required|string|max:255",
-            "description"=>"required|string|max:255",
+            "titre"=>"sometimes|string|max:255",
+            "description"=>"sometimes|string|max:255",
             "audio"=>"sometimes|mimes:mp3,wav,ogg"
         ];
     }

@@ -48,9 +48,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('podcasts', [PodcastController::class , 'store']);
     Route::put('podcasts/{id}', [PodcastController::class , 'update']);
     Route::delete('podcasts/{id}', [PodcastController::class , 'destroy']);
+    Route::get('podcasts', [PodcastController::class , 'index']);
+   Route::get('podcasts/{id}', [PodcastController::class , 'show']);
 });
-Route::get('podcasts', [PodcastController::class , 'index']);
-Route::get('podcasts/{id}', [PodcastController::class , 'show']);
+
 
 
 //episodes Routes
@@ -70,8 +71,8 @@ Route::get('episodes/{id}', [EpisodeController::class, 'show']);
 Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('hosts' ,[AnimateurController::class , 'store']);
-    Route::post('hosts/{id}' ,[AnimateurController::class , 'update']);
-    Route::post('hosts/{id}' ,[AnimateurController::class , 'destroy']);
+    Route::put('hosts/{id}' ,[AnimateurController::class , 'update']);
+    Route::delete('hosts/{id}' ,[AnimateurController::class , 'destroy']);
 });
 
     Route::get('hosts' ,[AnimateurController::class , 'index']);

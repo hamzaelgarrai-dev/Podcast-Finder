@@ -167,11 +167,11 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
-        $user->nom = $request->nom;
-        $user->prenom = $request->prenom;
-        $user->email = $request->email;
-        $user->password = $request->password;
-        $user->role = $request->role;
+        $user->nom = $request->nom ?? $user->nom;
+        $user->prenom = $request->prenom ?? $user->prenom;
+        $user->email = $request->email ?? $user->email;
+        $user->password = $request->password ?? $user->password;
+        $user->role = $request->role ?? $user->role;
 
         $user->update();
 

@@ -11,7 +11,7 @@ class SearchController extends Controller
    
     public function SearchPodcasts(Request $request){
 
-      $query = $request->query('query'); // GET /api/search?query=...
+      $query = $request->query('query'); 
 
     $podcasts = Podcast::query()
         ->where('titre', 'LIKE', "%{$query}%")
